@@ -9,6 +9,21 @@
 ## Time Complexity
 
 ## Arrays
+*The following example is how to create an array and fill it with numbers using Java.
+
+int[] myArray = new int[20];  //Creates an array of size 20 to store integers
+String[] myArray = new String[20];  //Creates an array of size 20 to store String and type this out in your code 	System.out.println(myArray.length); which will result in 20
+
+
+for(int i = 0; i < myArray.length; i++) { 
+
+    myArray[i] = i;
+
+}
+//myArray.length = 20, i = 0, loop until i > 19
+//On each iteration, myArray at index i will contain the current value of i
+//When this loop finishes, myArray will contain 0,1,2,3,4,5,6,7,8,9... 19 in that order
+Arrays are the simplest data structure you will be dealing with, but they are incredibly useful and have a huge amount of applications. Many complex data structures use arrays in some way. For example, you can represent a graph structure as a matrix, or two dimensional array, of connected edges. You can efficiently sort data without using any extra memory using a heap structure, which at its most basic form is just an array that can be sorted in place. Once you grasp arrays, you will be able to grasp the more complex structures much more easily.*
 
 ## Sorting
 

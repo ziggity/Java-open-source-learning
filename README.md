@@ -1356,6 +1356,289 @@ toString()	This method returns a String containing all of the elements in this l
 ## Binary Trees
 
 ## Binary Search Trees
+*Binary Search Tree (BST) Complete Implementation.
+Binary Tree : A data structure in which we have nodes containing data and two references to other nodes, one on the left and one on the right.
+
+Binary Tree consist of Nodes
+
+Nodes are nothing but objects of a class and each node has data and a link to the left node and right node.
+Usually we call the starting node of a tree as root.
+class Node{
+	int data;
+	Node left;
+	Node right;	
+	public Node(int data){
+		this.data = data;
+		left = null;
+		right = null;
+	}
+}
+
+ Left and right node of a Leaf node points to NULL so you will know that you have reached to the end of the tree.
+
+
+Binary Search Tree:
+
+Often we call it as BST, is a type of Binary tree which has a special property.
+
+Nodes smaller than root goes to the left of the root and Nodes greater than root goes to the right of the root.
+
+
+
+Operations:
+
+Insert(int n) : Add a node the tree with value n. Its O(lgn)
+
+Find(int n) : Find a node the tree with value n. Its O(lgn)
+
+Delete (int n) : Delete a node the tree with value n. Its O(lgn)
+
+Display(): Prints the entire tree in increasing order. O(n).
+
+Detail Explanations for the Operations:
+
+Find(int n):
+
+Its very simple operation to perform.
+start from the root and compare root.data with n
+if root.data is greater than n that means we need to go to the left of the root.
+if root.data is smaller than n that means we need to go to the right of the root.
+if any point of time root.data is equal to the n then we have found the node, return true.
+if we reach to the leaves (end of the tree) return false, we didn’t find the element
+Insert(int n):
+
+Very much similar to find() operation.
+To insert a node our first task is to find the place to insert the node.
+Take current = root .
+start from the current and compare root.data with n
+if current.data is greater than n that means we need to go to the left of the root.
+if current.data is smaller than n that means we need to go to the right of the root.
+if any point of time current is null that means we have reached to the leaf node, insert your node here with the help of parent node. (See code)
+
+
+Delete(int n):
+
+Complicated than Find() and Insert() operations. Here we have to deal with 3 cases.
+
+Node to be deleted is a leaf node ( No Children).
+Node to be deleted has only one child.
+Node to be deleted has two childrens.
+Node to be deleted is a leaf node ( No Children).
+
+its a very simple case, if a node to be deleted has no children then just traverse to that node, keep track of parent node and the side in which the node exist(left or right) and set parent.left = null or parent.right = null;
+
+ 
+
+
+
+Node to be deleted has only one child.
+
+its a slightly complex case. if a node to be deleted(deleteNode) has only one child then just traverse to that node, keep track of parent node and the side in which the node exist(left or right).
+check which side child is null (since it has only one child).
+Say node to be deleted has child on its left side . Then take the entire sub tree from the left side and add it to the parent and the side on which deleteNode exist, see step 1 and example.
+
+
+Node to be deleted has two children.
+
+Now this is quite exciting 🙂
+
+You just cannot replace the deleteNode with any of its child, Why? Lets try out a example.
+
+
+
+What to do now?????
+
+Dont worry we have solution for this 🙂
+
+Find The Successor:
+
+Successor is the node which will replace the deleted node. Now the question is to how to find it and where to find it.
+
+Successor is the smaller node in the right sub tree of the node to be deleted.
+
+
+
+Display() : To know about how we are displaying nodes in increasing order, Click Here
+
+Complete Example :
+
+ 
+
+
+
+Complete Example Code:Run This Code
+
+public class BinarySearchTree {
+	public static  Node root;
+	public BinarySearchTree(){
+		this.root = null;
+	}
+	
+	public boolean find(int id){
+		Node current = root;
+		while(current!=null){
+			if(current.data==id){
+				return true;
+			}else if(current.data>id){
+				current = current.left;
+			}else{
+				current = current.right;
+			}
+		}
+		return false;
+	}
+	public boolean delete(int id){
+		Node parent = root;
+		Node current = root;
+		boolean isLeftChild = false;
+		while(current.data!=id){
+			parent = current;
+			if(current.data>id){
+				isLeftChild = true;
+				current = current.left;
+			}else{
+				isLeftChild = false;
+				current = current.right;
+			}
+			if(current ==null){
+				return false;
+			}
+		}
+		//if i am here that means we have found the node
+		//Case 1: if node to be deleted has no children
+		if(current.left==null && current.right==null){
+			if(current==root){
+				root = null;
+			}
+			if(isLeftChild ==true){
+				parent.left = null;
+			}else{
+				parent.right = null;
+			}
+		}
+		//Case 2 : if node to be deleted has only one child
+		else if(current.right==null){
+			if(current==root){
+				root = current.left;
+			}else if(isLeftChild){
+				parent.left = current.left;
+			}else{
+				parent.right = current.left;
+			}
+		}
+		else if(current.left==null){
+			if(current==root){
+				root = current.right;
+			}else if(isLeftChild){
+				parent.left = current.right;
+			}else{
+				parent.right = current.right;
+			}
+		}else if(current.left!=null && current.right!=null){
+			
+			//now we have found the minimum element in the right sub tree
+			Node successor	 = getSuccessor(current);
+			if(current==root){
+				root = successor;
+			}else if(isLeftChild){
+				parent.left = successor;
+			}else{
+				parent.right = successor;
+			}			
+			successor.left = current.left;
+		}		
+		return true;		
+	}
+	
+	public Node getSuccessor(Node deleleNode){
+		Node successsor =null;
+		Node successsorParent =null;
+		Node current = deleleNode.right;
+		while(current!=null){
+			successsorParent = successsor;
+			successsor = current;
+			current = current.left;
+		}
+		//check if successor has the right child, it cannot have left child for sure
+		// if it does have the right child, add it to the left of successorParent.
+//		successsorParent
+		if(successsor!=deleleNode.right){
+			successsorParent.left = successsor.right;
+			successsor.right = deleleNode.right;
+		}
+		return successsor;
+	}
+	public void insert(int id){
+		Node newNode = new Node(id);
+		if(root==null){
+			root = newNode;
+			return;
+		}
+		Node current = root;
+		Node parent = null;
+		while(true){
+			parent = current;
+			if(id<current.data){				
+				current = current.left;
+				if(current==null){
+					parent.left = newNode;
+					return;
+				}
+			}else{
+				current = current.right;
+				if(current==null){
+					parent.right = newNode;
+					return;
+				}
+			}
+		}
+	}
+	public void display(Node root){
+		if(root!=null){
+			display(root.left);
+			System.out.print(" " + root.data);
+			display(root.right);
+		}
+	}
+	public static void main(String arg[]){
+		BinarySearchTree b = new BinarySearchTree();
+		b.insert(3);b.insert(8);
+		b.insert(1);b.insert(4);b.insert(6);b.insert(2);b.insert(10);b.insert(9);
+		b.insert(20);b.insert(25);b.insert(15);b.insert(16);
+		System.out.println("Original Tree : ");
+		b.display(b.root);		
+		System.out.println("");
+		System.out.println("Check whether Node with value 4 exists : " + b.find(4));
+		System.out.println("Delete Node with no children (2) : " + b.delete(2));		
+		b.display(root);
+		System.out.println("\n Delete Node with one child (4) : " + b.delete(4));		
+		b.display(root);
+		System.out.println("\n Delete Node with Two children (10) : " + b.delete(10));		
+		b.display(root);
+	}
+}
+
+class Node{
+	int data;
+	Node left;
+	Node right;	
+	public Node(int data){
+		this.data = data;
+		left = null;
+		right = null;
+	}
+}
+view rawBinarySearchTree.java hosted with ❤ by GitHub
+Output:
+Original Tree :
+1 2 3 4 6 8 9 10 15 16 20 25
+Check whether Node with value 4 exists : true
+Delete Node with no children (2) : true
+1 3 4 6 8 9 10 15 16 20 25
+Delete Node with one child (4) : true
+1 3 6 8 9 10 15 16 20 25
+Delete Node with Two children (10) : true
+1 3 6 8 9 15 16 20 25*
 
 ## Recursion
 

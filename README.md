@@ -1847,7 +1847,189 @@ Output:
 *
 
 ## Dynamic Programming
+*
+What is Dynamic Programming?
+Dynamic programming is a programming principle where a very complex problem can be solved by dividing it into smaller subproblems. This principle is very similar to recursion, but with a key difference, every distinct subproblem has to be solved only once.
 
+To understand what this means, we first have to understand the problem of solving recurrence relations. Every single complex problem can be divided into very similar subproblems, this means we can construct a recurrence relation between them.
+
+Let's take a look at an example we all are familiar with, the Fibonacci sequence! The Fibonacci sequence is defined with the following recurrence relation:
+
+f
+i
+b
+o
+n
+a
+c
+c
+i
+(
+n
+)
+=
+f
+i
+b
+o
+n
+a
+c
+c
+i
+(
+n
+−
+1
+)
++
+f
+i
+b
+o
+n
+a
+c
+c
+i
+(
+n
+−
+2
+)
+Note: A recurrence relation is an equation that recursively defines a sequence where the next term is a function of the previous terms. The Fibonacci sequence is a great example of this.
+
+So, if we want to find the n-th number in the Fibonacci sequence, we have to know the two numbers preceding the n-th in the sequence.
+
+However, every single time we want to calculate a different element of the Fibonacci sequence, we have have certain duplicate calls in our recursive calls, as can be seen in following image, where we calculate Fibonacci(5):
+
+fibonacci_sequence
+
+For example, if we want to calculate F(5), we obviously need to calculate F(4) and F(3) as a prerequisite. However, to calculate F(4), we need to calculate F(3) and F(2), which in turn requires us to calculate F(2) and F(1) in order to get F(3) – and so on.
+
+This leads to many repeated calculations, which are essentially redundant and slow down the algorithm significantly. To solve this issue, we're introducing ourselves to Dynamic Programming.
+
+In this approach, we model a solution as if we were to solve it recursively, but we solve it from the ground up, memoizing the solutions to the subproblems (steps) we take to reach the top.
+
+Therefore, for the Fibonacci sequence, we first solve and memoize F(1) and F(2), then calculate F(3) using the two memoized steps, and so on. This means that the calculation of every individual element of the sequence is O(1), because we already know the former two.
+
+When solving a problem using dynamic programming, we have to follow three steps:
+
+Determine the recurrence relation that applies to said problem
+Initialize the memory/array/matrix's starting values
+Make sure that when we make a "recursive call" (access the memoized solution of a subproblem) it's always solved in advance
+Following these rules, let's take a look at some examples of algorithms that use dynamic programming.
+
+Rod Cutting Algorithm
+Let's start with something simple:
+
+Given a rod of length n and an array that contains prices of all pieces of size smaller than n. Determine the maximum value obtainable by cutting up the rod and selling the pieces.
+
+Naive Solution
+This problem is practically tailor-made for dynamic programming, but because this is our first real example, let's see how many fires we can start by letting this code run:
+
+public class naiveSolution {
+    static int getValue(int[] values, int length) {
+        if (length <= 0)
+            return 0;
+        int tmpMax = -1;
+        for (int i = 0; i < length; i++) {
+            tmpMax = Math.max(tmpMax, values[i] + getValue(values, length - i - 1));
+        }
+        return tmpMax;
+    }
+
+    public static void main(String[] args) {
+        int[] values = new int[]{3, 7, 1, 3, 9};
+        int rodLength = values.length;
+
+        System.out.println("Max rod value: " + getValue(values, rodLength));
+    }
+}
+Output:
+
+Max rod value: 17
+This solution, while correct, is highly inefficient. Recursive calls aren't memoized so the poor code has to solve the same subproblem every time there's a single overlapping solution.
+
+Dynamic Approach
+Utilizing the same basic principle from above, but adding memoization and excluding recursive calls, we get the following implementation:
+
+public class dpSolution {
+    static int getValue(int[] values, int rodLength) {
+        int[] subSolutions = new int[rodLength + 1];
+
+        for (int i = 1; i <= rodLength; i++) {
+            int tmpMax = -1;
+            for (int j = 0; j < i; j++)
+                tmpMax = Math.max(tmpMax, values[j] + subSolutions[i - j - 1]);
+            subSolutions[i] = tmpMax;
+        }
+        return subSolutions[rodLength];
+    }
+
+    public static void main(String[] args) {
+        int[] values = new int[]{3, 7, 1, 3, 9};
+        int rodLength = values.length;
+
+        System.out.println("Max rod value: " + getValue(values, rodLength));
+    }
+}
+Output:
+
+Max rod value: 17
+As we can see, the resulting outputs are the same, only with different time/space complexity.
+
+We eliminate the need for recursive calls by solving the subproblems from the ground-up, utilizing the fact that all previous subproblems to a given problem are already solved.
+
+Performance Boost
+Just to give a perspective of how much more efficient the Dynamic approach is, let's try running the algorithm with 30 values.
+
+The Naive solution took ~5.2s to execute whereas the Dynamic solution took ~0.000095s to execute.
+
+Simplified Knapsack Problem
+The Simplified Knapsack problem is a problem of optimization, for which there is no one solution. The question for this problem would be - "Does a solution even exist?":
+
+Given a set of items, each with a weight w1, w2... determine the number of each item to put in a knapsack so that the total weight is less than or equal to a given limit K.
+
+So let's take a step back and figure out how will we represent the solutions to this problem. First, let's store the weights of all the items in an array W.
+
+Next, let's say that there are n items and we'll enumerate them with numbers from 1 to n, so the weight of the i-th item is W[i].
+
+We'll form a matrix M of (n+1)x(K+1) dimensions. M[x][y] corresponding to the solution of the knapsack problem, but only including the first x items of the beginning array, and with a maximum capacity of y.
+
+Example
+Let's say we have 3 items, with the weights being w1=2kg, w2=3kg, and w3=4kg.
+
+Utilizing the method above, we can say that M[1][2] is a valid solution. This means that we are trying to fill a knapsack with a capacity of 2kg with just the first item from the weight array (w1).
+
+While in M[3][5] we are trying to fill up a knapsack with a capacity of 5kg using the first 3 items of the weight array (w1,w2,w3). This isn't a valid solution, since we're overfitting it.
+
+Matrix Initialization
+There are 2 things to note when filling up the matrix:
+
+Does a solution exist for the given subproblem (M[x][y].exists) AND does the given solution include the latest item added to the array (M[x][y].includes).
+
+Therefore, initialization of the matrix is quite easy, M[0][k].exists is always false, if k > 0, because we didn't put any items in a knapsack with k capacity.
+
+On the other hand, M[0][0].exists = true, because the knapsack should be empty to begin with since k = 0, and therefore we can't put anything in and this is a valid solution.
+
+Furthermore, we can say that M[k][0].exists = true but also M[k][0].includes = false for every k.
+
+Note: Just because a solution exists for a given M[x][y], it doesn't necessarily mean that that particular combination is the solution. In the case of M[10][0], a solution exists - not including any of the 10 elements. This is why M[10][0].exists = true but M[10][0].includes = false.
+
+Algorithm Principle
+Next, let's construct the recurrence relation for M[i][k] with the following pseudo-code:
+
+if (M[i-1][k].exists == True):
+    M[i][k].exists = True
+    M[i][k].includes = False
+elif (k-W[i]>=0):
+    if(M[i-1][k-W[i]].exists == true):
+        M[i][k].exists = True
+        M[i][k].includes = True
+else:
+    M[i][k].exists = False
+*
 ## Greedy Algorithms
 
 ## Graphs

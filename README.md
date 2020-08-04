@@ -2128,6 +2128,71 @@ class ActivitySelection
     } 
       
 } *
+## Unit testing
+*
+Step 1: Get the required unit testing artefacts
+Add in the JUnit dependency into maven `pom.xml` file.
+I use Maven as my build tool/project management system for my projects most of the time. If you use other build tools such as Ant, Gradle, Ivy etc. then it would be similar.
+
+JUnit 5 is the latest version but i normally use JUnit 4 as thats the most recent version that is very much stable enough to work with plus i use that in most of my projects. You can use JUnit 5. Just grab the correct dependency.
+Step 2: Create your test class
+
+A very contrived example i know, but I just want to showcase doing a simple unit test via a very common well known sample.
+Unlike its predecessor JUnit 3 where you are required to extend another class JUnit 4 doesn’t need to. All you required to do is create a method and annotate it with:
+@Test
+Then write your unit test case as you would normally with the given test flow of setting the expectation, execute the method in test, and finally verifying the results as shown above.
+Optionally, as I have shown there, you can use a set up method to setup the test data:
+@Before    
+private void setUp() {        
+    number1 = 1;        
+    number2 = 2;    
+}
+And also a tear down method to strip down the test setup:
+@After    
+private void tearDown() {        
+    number1 = 0;        
+    number2 = 0;    
+}
+I won’t cover all the JUnit features it has and this can be left as an exercise for the reader.
+Step 3: run your test
+That’s it. Simple as that. Just like that in order to use JUnit for unit testing in Java.
+To run your test, you can easily run it from your beloved IDE.
+Or if you’re using Maven like i am then you can this on the command line:
+mvn clean test
+Step 4: Add in Surefire plugin
+
+Optionally, you can add this maven plugin to control running your unit tests as part of your build. For example, as shown above, you add in the configuration to skip tests in certain conditions.
+For example, if you’re making small changes (non code related changes that doesn’t affect the code whatsoever), you may not want to each time run the full unit test suite every time you do a maven local build.
+So this `maven-surefire-plugin` comes in handy for these scenarios. But use with care and be vigilant about using it.
+Define the expected and desired output for a normal case, with correct input.
+
+Now, implement the test by declaring a class, name it anything (Usually something like TestAddingModule), and add the testAdd method to it (i.e. like the one below) :
+
+Write a method, and above it add the @Test annotation.
+In the method, run your binary sum and assertEquals(expectedVal,calculatedVal).
+Test your method by running it (in Eclipse, right click, select Run as → JUnit test).
+
+//for normal addition 
+@Test
+public void testAdd1Plus1() 
+{
+    int x  = 1 ; int y = 1;
+    assertEquals(2, myClass.add(x,y));
+}
+Add other cases as desired.
+
+Test that your binary sum does not throw a unexpected exception if there is an integer overflow.
+Test that your method handles Null inputs gracefully (example below).
+
+//if you are using 0 as default for null, make sure your class works in that case.
+@Test
+public void testAdd1Plus1() 
+{
+    int y = 1;
+    assertEquals(0, myClass.add(null,y));
+    
+    
+    *
 ## Graphs 
 *
 2. Graph Data Structure

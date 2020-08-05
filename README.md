@@ -1,7 +1,24 @@
 
 
  # Java open source 
+* Mastering the fundamentals of Java programming Language - This is the most important skill that you must learn to become successful java programmer. You must master the fundamentals of the language, specially the areas like OOP, Collections, Generics, Concurrency, I/O, Stings, Exception handling, Inner Classes and JVM architecture.
 
+Recommended readings are OCA Java SE 8 Programmer by by Kathy Sierra and Bert Bates (First read Head First Java if you are a new comer ) and Effective Java by Joshua Bloch.
+
+(2) Data Structures and Algorithms - Programming languages are basically just a tool to solve problems. Problems generally has data to process on to make some decisions and we have to build a procedure to solve that specific problem domain. In any real life complexity of the problem domain and the data we have to handle would be very large. That’s why it is essential to knowing basic data structures like Arrays, Linked Lists, Stacks, Queues, Trees, Heap, Dictionaries ,Hash Tables and Graphs and also basic algorithms like Searching, Sorting, Hashing, Graph algorithms, Greedy algorithms and Dynamic Programming.
+
+Recommended readings are Data Structures & Algorithms in Java by Robert Lafore (Beginner) , Algorithms Robert Sedgewick (intermediate) and Introduction to Algorithms-MIT press by CLRS (Advanced).
+
+(3) Design Patterns - Design patterns are general reusable solution to a commonly occurring problem within a given context in software design and they are absolutely crucial as hard core Java Programmer. If you don't use design patterns you will write much more code, it will be buggy and hard to understand and refactor, not to mention untestable and they are really great way for communicating your intent very quickly with other programmers.
+
+Recommended readings are Head First Design Patterns Elisabeth Freeman and Kathy Sierra and Design Patterns: Elements of Reusable by Gang of four.
+
+(4) Programming Best Practices - Programming is not only about learning and writing code. Code readability is a universal subject in the world of computer programming. It helps standardize products and help reduce future maintenance cost. Best practices helps you, as a programmer to think differently and improves problem solving attitude within you. A simple program can be written in many ways if given to multiple developers. Thus the need to best practices come into picture and every programmer must aware about these things.
+
+Recommended readings are Clean Code by Robert Cecil Martin and Code Complete by Steve McConnell.
+
+(5) Testing and Debugging (T&D) - As you know about the writing the code for specific problem domain, you have to learn how to test that code snippet and debug it when it is needed. Some programmers skip their unit testing or other testing methodology part and leave it to QA guys. That will lead to delivering 80% bugs hiding in your code to the QA team and reduce the productivity and risking and pushing your project boundaries to failure. When a miss behavior or bug occurred within your code when the testing phase. It is essential to know about the debugging techniques to identify that bug and its root cause.
+*
 *This is an open source knowledge share on all things Java CS related*
 
 ## Algorithms
@@ -270,7 +287,121 @@ void bubbleSort(int arr[], int n)
 
 }
 *
+## concurency 
+*
+1.1. What is concurrency?
+Concurrency is the ability to run several programs or several parts of a program in parallel. If a time consuming task can be performed asynchronously or in parallel, this improves the throughput and the interactivity of the program.
 
+A modern computer has several CPU’s or several cores within one CPU. The ability to leverage these multi-cores can be the key for a successful high-volume application.
+
+1.2. Process vs. threads
+A process runs independently and isolated of other processes. It cannot directly access shared data in other processes. The resources of the process, e.g. memory and CPU time, are allocated to it via the operating system.
+
+A thread is a so called lightweight process. It has its own call stack, but can access shared data of other threads in the same process. Every thread has its own memory cache. If a thread reads shared data, it stores this data in its own memory cache.
+
+A thread can re-read the shared data.
+
+A Java application runs by default in one process. Within a Java application you work with several threads to achieve parallel processing or asynchronous behavior.
+
+2. Improvements and issues with concurrency
+2.1. Limits of concurrency gains
+Within a Java application you work with several threads to achieve parallel processing or asynchronous behavior. Concurrency promises to perform certain task faster as these tasks can be divided into subtasks and these subtasks can be executed in parallel. Of course the runtime is limited by parts of the task which can be performed in parallel.
+
+The theoretical possible performance gain can be calculated by the following rule which is referred to as Amdahl’s Law.
+
+If F is the percentage of the program which can not run in parallel and N is the number of processes, then the maximum performance gain is 1 / (F+ ((1-F)/N)).
+
+2.2. Concurrency issues
+Threads have their own call stack, but can also access shared data. Therefore you have two basic problems, visibility and access problems.
+
+A visibility problem occurs if thread A reads shared data which is later changed by thread B and thread A is unaware of this change.
+
+An access problem can occur if several threads access and change the same shared data at the same time.
+
+Visibility and access problem can lead to:
+
+Liveness failure: The program does not react anymore due to problems in the concurrent access of data, e.g. deadlocks.
+
+Safety failure: The program creates incorrect data.
+
+3. Concurrency in Java
+3.1. Processes and Threads
+A Java program runs in its own process and by default in one thread. Java supports threads as part of the Java language via the Thread code. The Java application can create new threads via this class.
+
+Java 1.5 also provides improved support for concurrency with the java.util.concurrent package.
+
+3.2. Locks and thread synchronization
+Java provides locks to protect certain parts of the code to be executed by several threads at the same time. The simplest way of locking a certain method or Java class is to define the method or class with the synchronized keyword.
+
+The synchronized keyword in Java ensures:
+
+that only a single thread can execute a block of code at the same time
+
+that each thread entering a synchronized block of code sees the effects of all previous modifications that were guarded by the same lock
+
+Synchronization is necessary for mutually exclusive access to blocks of and for reliable communication between threads.
+
+You can use the synchronized keyword for the definition of a method. This would ensure that only one thread can enter this method at the same time. Another thread which is calling this method would wait until the first thread leaves this method.
+
+public synchronized void critial() {
+    // some thread critical stuff
+    // here
+}
+You can also use the synchronized keyword to protect blocks of code within a method. This block is guarded by a key, which can be either a string or an object. This key is called the lock.
+
+All code which is protected by the same lock can only be executed by one thread at the same time.
+
+For example the following data structure will ensure that only one thread can access the inner block of the add() and next() methods.
+
+package de.vogella.pagerank.crawler;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Data structure for a web crawler. Keeps track of the visited sites and keeps
+ * a list of sites which needs still to be crawled.
+ *
+ * @author Lars Vogel
+ *
+ */
+public class CrawledSites {
+    private List<String> crawledSites = new ArrayList<String>();
+    private List<String> linkedSites = new ArrayList<String>();
+
+    public void add(String site) {
+        synchronized (this) {
+            if (!crawledSites.contains(site)) {
+                linkedSites.add(site);
+            }
+        }
+    }
+
+    /**
+     * Get next site to crawl. Can return null (if nothing to crawl)
+     */
+    public String next() {
+        if (linkedSites.size() == 0) {
+            return null;
+        }
+        synchronized (this) {
+            // Need to check again if size has changed
+            if (linkedSites.size() > 0) {
+                String s = linkedSites.get(0);
+                linkedSites.remove(0);
+                crawledSites.add(s);
+                return s;
+            }
+            return null;
+        }
+    }
+
+}
+3.3. Volatile
+If a variable is declared with the volatile keyword then it is guaranteed that any thread that reads the field will see the most recently written value. The volatile keyword will not perform any mutual exclusive lock on the variable.
+
+As of Java 5, write access to a volatile variable will also update non-volatile variables which were modified by the same thread. This can also be used to update values within a reference variable, e.g. for a volatile variable person. In this case you must use a temporary variable person and use the setter to initialize the variable and then assign the temporary variable to the final variable. This will then make the address changes of this variable and the values visible to other threads.
+*
 ## Searching
 *Linear Search
 Binary Search

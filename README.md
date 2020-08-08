@@ -1,7 +1,29 @@
 
 
  # Java open source 
-* Mastering the fundamentals of Java programming Language - This is the most important skill that you must learn to become successful java programmer. You must master the fundamentals of the language, specially the areas like OOP, Collections, Generics, Concurrency, I/O, Stings, Exception handling, Inner Classes and JVM architecture.
+* Abstraction and Encapsulation - Java programmer must know difference Abstraction and Encapsulation and how these can be utilized in java. A good understanding of POJOs and why we need POJOs will always help you designing a better solution. 
+
+Difference between Abstraction vs Encapsulation
+Here are some of the key difference between Encapsulation and Abstraction in point format for your quick revision:
+
+1) The most important difference between Abstraction and Encapsulation is that Abstraction solves the problem at design level while Encapsulation solves its implementation level.
+
+2) Abstraction is about hiding unwanted details while giving out the most essential details, while Encapsulation means hiding the code and data into a single unit e.g. class or method to protect the inner working of an object from the outside world. In other words, Abstraction means extracting common details or generalizing things.
+
+3) Abstraction lets you focus on what the object does instead of how it does, while Encapsulation means hiding the internal details of how an object works. When you keep internal working details private, you can change it later with a better method. The Head First Object-Oriented Analysis and Design has some excellent examples of these OOP concepts, I suggest you read that book at least once to revisit OOP fundamentals.
+
+
+
+* Difference between equals and "== "operator - "==" operator compares the if instances refer to the same object. Whereas equals() is a method defined in Object class of java. equals() is used to compare the content of an object.
+Collections - A good knowledge of collection can save you from many performance issues. It is always advisable know about:
+Difference between list, set and map.
+Difference between LinkedList and ArrayList - Arraylist is pretty fast for search operations however Linkedlist is good for fast addition and deletion.
+Difference between HashSet and TreeSet - HashSet is usually faster than Treeset if you are not bothered about sorting elements.
+
+Difference between HashMap, HashTable and ConcurrentHashMap - Use of maps can be a bit tricky if you are trying to access them concurrently.
+Contract between equals and hashCode - You may or may not use the concept but it is always good to know how java operates internally.
+Difference between an Abstract class and Interface - With Java 8 features, now it is even more important to know about Interfaces.
+Difference between Instance variable and class variable - I have seen many programmer struggling with the concept of instance variable and class variable. Instance variable belongs to an object and every object will have its own copy of instance variable. Whereas a copy of class variable will be shared among all the objects of class. Mastering the fundamentals of Java programming Language - This is the most important skill that you must learn to become successful java programmer. You must master the fundamentals of the language, specially the areas like OOP, Collections, Generics, Concurrency, I/O, Stings, Exception handling, Inner Classes and JVM architecture.
 
 Recommended readings are OCA Java SE 8 Programmer by by Kathy Sierra and Bert Bates (First read Head First Java if you are a new comer ) and Effective Java by Joshua Bloch.
 

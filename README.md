@@ -102,13 +102,13 @@ New, asynchronous "separate state" platforms and toolkits like Netty, Vert.x and
 
 ## Time Complexity
 *
-O(1) -> constant time - near instant speed - ie only one operation needs to be performed to locate it.
-O(log n) -> logarithmic time -> often found in binary trees, for binary search, highly effecient
-O(n) ->linear time - takes time of n - linear of size of the input. 
-O(n log n) ->  Divide and conquer - not optimized for speed but gets the job done.
-O(n^2) -> polynomial time, (slow) nested for loop so for each loop on n array, do a loop on another array
-O(2^n)  -> exponential time - slow
-n! -> factorial time (very slow - traveling salesmen for example, travel N paths on a tree, but at each node calculate the entire path again (HUGE calculations))
+* O(1) -> constant time - near instant speed - ie only one operation needs to be performed to locate it.
+* O(log n) -> logarithmic time -> often found in binary trees, for binary search, highly effecient
+* O(n) ->linear time - takes time of n - linear of size of the input. 
+* O(n log n) ->  Divide and conquer - not optimized for speed but gets the job done.
+* O(n^2) -> polynomial time, (slow) nested for loop so for each loop on n array, do a loop on another array
+* O(2^n)  -> exponential time - slow
+* n! -> factorial time (very slow - traveling salesmen for example, travel N paths on a tree, but at each node calculate the entire path again (HUGE calculations))
 *
 ## Arrays
 *The following example is how to create an array and fill it with numbers using Java.

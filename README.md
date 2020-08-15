@@ -101,7 +101,7 @@ New, asynchronous "separate state" platforms and toolkits like Netty, Vert.x and
 ## Algorithms
 
 ## Time Complexity
-*
+
 * O(1) -> constant time - near instant speed - ie only one operation needs to be performed to locate it.
 * O(log n) -> logarithmic time -> often found in binary trees, for binary search, highly effecient
 * O(n) ->linear time - takes time of n - linear of size of the input. 
@@ -109,7 +109,7 @@ New, asynchronous "separate state" platforms and toolkits like Netty, Vert.x and
 * O(n^2) -> polynomial time, (slow) nested for loop so for each loop on n array, do a loop on another array
 * O(2^n)  -> exponential time - slow
 * n! -> factorial time (very slow - traveling salesmen for example, travel N paths on a tree, but at each node calculate the entire path again (HUGE calculations))
-*
+
 ## Arrays
 *The following example is how to create an array and fill it with numbers using Java.
 
@@ -1568,7 +1568,10 @@ toArray()	This method returns an array containing all of the elements in this li
 toArray(T[] a)	This method returns an array containing all of the elements in this list in proper sequence (from first to last element); the runtime type of the returned array is that of the specified array.
 toString()	This method returns a String containing all of the elements in this list in proper sequence (from first to last element), each element is separated by commas and the String is enclosed in square brackets.*
 ## Stacks and Queues
-
+* Stacks. A stack is a collection that is based on the last-in-first-out (LIFO) policy. By tradition, we name the stack insert method push() and the stack remove operation pop(). We also include a method to test whether the stack is empty, as indicated in the following API:
+API for a stack
+* Queue. A queue supports the insert and remove operations using a first-in first-out (FIFO) discipline. By convention, we name the queue insert operation enqueue and the remove operation dequeue, as indicated in the following API:
+API for a LIFO queue
 ## Binary Trees
 
 ## Binary Search Trees

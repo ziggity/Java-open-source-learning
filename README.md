@@ -2715,7 +2715,70 @@ I'm [Zach Beecher](https://github.com/ziggity/).
 
 This little project began back in July 2020
 
-## Further Reading
+## Interview questions
+* Basic Java Interview Questions
+Q1. Explain JDK, JRE and JVM?
+JDK vs JRE vs JVM
+JDK	JRE	JVM
+It stands for Java Development Kit.	It stands for Java Runtime Environment.	It stands for Java Virtual Machine.
+It is the tool necessary to compile, document and package Java programs.	JRE refers to a runtime environment in which Java bytecode can be executed.	It is an abstract machine. It is a specification that provides a run-time environment in which Java bytecode can be executed.
+It contains JRE + development tools.	It’s an implementation of the JVM which physically exists.	JVM follows three notations: Specification, Implementation, and Runtime Instance.
+
+Q2. Explain public static void main(String args[]) in Java.
+main() in Java is the entry point for any Java program. It is always written as public static void main(String[] args).
+
+public: Public is an access modifier, which is used to specify who can access this method. Public means that this Method will be accessible by any Class.
+static: It is a keyword in java which identifies it is class-based. main() is made static in Java so that it can be accessed without creating the instance of a Class. In case, main is not made static then the compiler will throw an error as main() is called by the JVM before any objects are made and only static methods can be directly invoked via the class. 
+void: It is the return type of the method. Void defines the method which will not return any value.
+main: It is the name of the method which is searched by JVM as a starting point for an application with a particular signature only. It is the method where the main execution occurs.
+String args[]: It is the parameter passed to the main method.
+
+Q3. Why Java is platform independent?
+Java is called platform independent because of its byte codes which can run on any system irrespective of its underlying operating system.
+
+
+Q4. Why Java is not 100% Object-oriented?
+
+Java is not 100% Object-oriented because it makes use of eight primitive data types such as boolean, byte, char, int, float, double, long, short which are not objects.
+
+Q5. What are wrapper classes in Java?
+
+Wrapper classes convert the Java primitives into the reference types (objects). Every primitive data type has a class dedicated to it. These are known as wrapper classes because they “wrap” the primitive data type into an object of that class. Refer to the below image which displays different primitive type, wrapper class and constructor argument.
+
+
+Q6. What are constructors in Java?
+In Java, constructor refers to a block of code which is used to initialize an object. It must have the same name as that of the class. Also, it has no return type and it is automatically called when an object is created.
+
+There are two types of constructors:
+
+Default Constructor: In Java, a default constructor is the one which does not take any inputs. In other words, default constructors are the no argument constructors which will be created by default in case you no other constructor is defined by the user. Its main purpose is to initialize the instance variables with the default values. Also, it is majorly used for object creation. 
+Parameterized Constructor: The parameterized constructor in Java, is the constructor which is capable of initializing the instance variables with the provided values. In other words, the constructors which take the arguments are called parameterized constructors.
+
+Q7. What is singleton class in Java and how can we make a class singleton?
+Singleton class is a class whose only one instance can be created at any given time, in one JVM. A class can be made singleton by making its constructor private.
+
+Q8. What is the difference between Array list and vector in Java?
+ArrayList	Vector
+Array List is not synchronized.	 Vector is synchronized.
+Array List is fast as it’s non-synchronized.	Vector is slow as it is thread safe.
+If an element is inserted into the Array List, it increases its Array size by 50%.	Vector defaults to doubling size of its array.
+Array List does not define the increment size.	Vector defines the increment size.
+Array List can only use Iterator for traversing an Array List.	Vector can use both Enumeration and Iterator for traversing.
+
+Q9. What is the difference between equals() and == in Java?
+Equals() method is defined in Object class in Java and used for checking equality of two objects defined by business logic.
+
+“==” or equality operator in Java is a binary operator provided by Java programming language and used to compare primitives and objects. public boolean equals(Object o) is the method provided by the Object class. The default implementation uses == operator to compare two objects. For example: method can be overridden like String class. equals() method is used to compare the values of two objects.
+
+Q10. What are the differences between Heap and Stack Memory in Java?
+The major difference between Heap and Stack memory are:
+
+Features	Stack	Heap
+Memory	Stack memory is used only by one thread of execution.	Heap memory is used by all the parts of the application.
+Access	Stack memory can’t be accessed by other threads.	Objects stored in the heap are globally accessible.
+Memory Management	Follows LIFO manner to free memory.	Memory management is based on the generation associated with each object.
+Lifetime	Exists until the end of execution of the thread.	Heap memory lives from the start till the end of application execution.
+Usage	Stack memory only contains local primitive and reference variables to objects in heap space.	Whenever an object is created, it’s always stored in the Heap space.
 
 
 

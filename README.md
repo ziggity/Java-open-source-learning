@@ -2780,7 +2780,93 @@ Memory Management	Follows LIFO manner to free memory.	Memory management is based
 Lifetime	Exists until the end of execution of the thread.	Heap memory lives from the start till the end of application execution.
 Usage	Stack memory only contains local primitive and reference variables to objects in heap space.	Whenever an object is created, it’s always stored in the Heap space.
 
+Q11. What is a package in Java? List down various advantages of packages.
+Packages in Java, are the collection of related classes and interfaces which are bundled together. By using packages, developers can easily modularize the code and optimize its reuse. Also, the code within the packages can be imported by other classes and reused. Below I have listed down a few of its advantages:
 
+Packages help in avoiding name clashes
+They provide easier access control on the code
+Packages can also contain hidden classes which are not visible to the outer classes and only used within the package
+Creates a proper hierarchical structure which makes it easier to locate the related classes
+Q12. Why pointers are not used in Java?
+Java doesn’t use pointers because they are unsafe and increases the complexity of the program. Since, Java is known for its simplicity of code, adding the concept of pointers will be contradicting. Moreover, since JVM is responsible for implicit memory allocation, thus in order to avoid direct access to memory by the user,  pointers are discouraged in Java.
+
+Q13. What is JIT compiler in Java?
+JIT stands for Just-In-Time compiler in Java. It is a program that helps in converting the Java bytecode into instructions that are sent directly to the processor. By default, the JIT compiler is enabled in Java and is activated whenever a Java method is invoked. The JIT compiler then compiles the bytecode of the invoked method into native machine code, compiling it “just in time” to execute. Once the method has been compiled, the JVM summons the compiled code of that method directly rather than interpreting it. This is why it is often responsible for the performance optimization of Java applications at the run time.
+
+Q14. What are access modifiers in Java?
+In Java, access modifiers are special keywords which are used to restrict the access of a class, constructor, data member and method in another class. Java supports four types of access modifiers:
+
+Default
+Private
+Protected
+Public
+Modifier	Default	Private	Protected	Public
+Same class	YES	YES	YES	YES
+Same Package subclass	YES	NO	YES	YES
+Same Package non-subclass	YES	NO	YES	YES
+Different package subclass	NO	NO	YES	YES
+Different package non-subclass	NO	NO	NO	YES
+Q15. Define a Java Class.
+A class in Java is a blueprint which includes all your data.  A class contains fields (variables) and methods to describe the behavior of an object. Let’s have a look at the syntax of a class.
+
+1
+2
+3
+class Abc {
+member variables // class body
+methods}
+Q16. What is an object in Java and how is it created?
+An object is a real-world entity that has a state and behavior. An object has three characteristics:
+
+State
+Behavior
+Identity
+An object is created using the ‘new’ keyword. For example:
+
+ClassName obj = new ClassName();
+
+Q17. What is Object Oriented Programming?
+Object-oriented programming or popularly known as OOPs is a programming model or approach where the programs are organized around objects rather than logic and functions. In other words, OOP mainly focuses on the objects that are required to be manipulated instead of logic. This approach is ideal for the programs large and complex codes and needs to be actively updated or maintained.
+
+Q18. What are the main concepts of OOPs in Java?
+Object-Oriented Programming or OOPs is a programming style that is associated with concepts like:
+
+Inheritance: Inheritance is a process where one class acquires the properties of another.
+Encapsulation: Encapsulation in Java is a mechanism of wrapping up the data and code together as a single unit.
+Abstraction: Abstraction is the methodology of hiding the implementation details from the user and only providing the functionality to the users. 
+Polymorphism: Polymorphism is the ability of a variable, function or object to take multiple forms.
+Q19. What is the difference between a local variable and an instance variable?
+In Java, a local variable is typically used inside a method, constructor, or a block and has only local scope. Thus, this variable can be used only within the scope of a block. The best benefit of having a local variable is that other methods in the class won’t be even aware of that variable.
+
+Example
+
+1
+2
+3
+4
+if(x > 100)
+{
+String test = "Edureka";
+}
+ 
+
+Whereas, an instance variable in Java, is a variable which is bounded to its object itself. These variables are declared within a class, but outside a method. Every object of that class will create it’s own copy of the variable while using it. Thus, any changes made to the variable won’t reflect in any other instances of that class and will be bound to that particular instance only.
+
+1
+2
+3
+4
+class Test{
+public String EmpName;
+public int empAge;
+}
+Q20. Differentiate between the constructors and methods in Java?
+Methods	Constructors
+1. Used to represent the behavior of an object	1. Used to initialize the state of an object
+2. Must have a return type	2. Do not have any return type
+3. Needs to be invoked explicitly	3. Is invoked implicitly
+4. No default method is provided by the compiler	4. A default constructor is provided by the compiler if the class has none
+5. Method name may or may not be same as class name	5. Constructor name must always be the same as the class name
 
 
 

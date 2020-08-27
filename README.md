@@ -2868,7 +2868,120 @@ Methods	Constructors
 4. No default method is provided by the compiler	4. A default constructor is provided by the compiler if the class has none
 5. Method name may or may not be same as class name	5. Constructor name must always be the same as the class name
 
+Q21. What is final keyword in Java?
+final is a special keyword in Java that is used as a non-access modifier. A final variable can be used in different contexts such as:
 
+final variable
+When the final keyword is used with a variable then its value can’t be changed once assigned. In case the no value has been assigned to the final variable then using only the class constructor a value can be assigned to it.
+
+final method
+When a method is declared final then it can’t be overridden by the inheriting class.
+
+final class
+When a class is declared as final in Java, it can’t be extended by any subclass class but it can extend other class.
+
+Q22. What is the difference between break and continue statements?
+break	continue
+1. Can be used in switch and loop (for, while, do while) statements	1. Can be only used with loop statements
+2. It causes the switch or loop statements to terminate the moment it is executed	2. It doesn’t terminate the loop but causes the loop to jump to the next iteration
+3. It terminates the innermost enclosing loop or switch immediately	3. A continue within a loop nested with a switch will cause the next loop iteration to execute
+Example break:
+1
+2
+3
+4
+5
+6
+7
+8
+for (int i = 0; i < 5; i++)
+{
+if (i == 3)
+{
+break;
+}
+System.out.println(i);
+}
+Example continue:
+1
+2
+3
+4
+5
+6
+7
+8
+for (int i = 0; i < 5; i++)
+{
+if(i == 2)
+{
+continue;
+}
+System.out.println(i);
+}
+Q23.What is an infinite loop in Java? Explain with an example.
+An infinite loop is an instruction sequence in Java that loops endlessly when a functional exit isn’t met. This type of loop can be the result of a programming error or may also be a deliberate action based on the application behavior. An infinite loop will terminate automatically once the application exits.
+
+For example:
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+public class InfiniteForLoopDemo
+{
+public static void main(String[] arg) {
+for(;;)
+System.out.println("Welcome to Edureka!");
+// To terminate this program press ctrl + c in the console.
+}
+}
+ 
+
+Q24. What is the difference between this() and super() in Java?
+In Java, super() and this(), both are special keywords that are used to call the constructor. 
+
+this()	super()
+1. this() represents the current instance of a class	1. super() represents the current instance of a parent/base class
+2. Used to call the default constructor of the same class	2. Used to call the default constructor of the parent/base class
+3. Used to access methods of the current class	3. Used to access methods of the base class
+4.  Used for pointing the current class instance	4. Used for pointing the superclass instance
+5. Must be the first line of a block	5. Must be the first line of a block
+Q25. What is Java String Pool?
+Java String pool refers to a collection of Strings which are stored in heap memory. In this, whenever a new object is created, String pool first checks whether the object is already present in the pool or not. If it is present, then the same reference is returned to the variable else new object will be created in the String pool and the respective reference will be returned.
+
+String pool - Java Interview Questions - Edureka
+
+Q26. Differentiate between static and non-static methods in Java.
+Static Method	Non-Static Method
+1. The static keyword must be used before the method name	1. No need to use the static keyword before the method name
+2. It is called using the class (className.methodName) 	2. It is can be called like any general method
+3. They can’t access any non-static instance variables or methods	3. It can access any static method and any static variable without creating an instance of the class
+Q27. What is constructor chaining in Java?
+In Java, constructor chaining is the process of calling one constructor from another with respect to the current object. Constructor chaining is possible only through legacy where a subclass constructor is responsible for invoking the superclass’ constructor first. There could be any number of classes in the constructor chain. Constructor chaining can be achieved in two ways:
+
+Within the same class using this()
+From base class using super()
+Q28. Difference between String, StringBuilder, and StringBuffer.
+
+Factor	String	StringBuilder	StringBuffer
+Storage Area	Constant String Pool	Heap Area	Heap Area
+Mutability	Immutable	Mutable	Mutable
+Thread Safety	Yes	No	Yes
+Performance	Fast	More efficient	Less efficient
+Q29. What is a classloader in Java?
+The Java ClassLoader is a subset of JVM (Java Virtual Machine) that is responsible for loading the class files. Whenever a Java program is executed it is first loaded by the classloader. Java provides three built-in classloaders:
+
+Bootstrap ClassLoader
+Extension ClassLoader
+System/Application ClassLoader
+Q30. Why Java Strings are immutable in nature?
+In Java, string objects are immutable in nature which simply means once the String object is created its state cannot be modified. Whenever you try to update the value of that object instead of updating the values of that particular object, Java creates a new string object. Java String objects are immutable as String objects are generally cached in the String pool. Since String literals are usually shared between multiple clients, action from one client might affect the rest. It enhances security, caching, synchronization, and performance of the application. 
 
 ## Footnotes
 

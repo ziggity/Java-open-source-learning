@@ -2809,9 +2809,6 @@ Different package non-subclass	NO	NO	NO	YES
 Q15. Define a Java Class.
 A class in Java is a blueprint which includes all your data.  A class contains fields (variables) and methods to describe the behavior of an object. Let’s have a look at the syntax of a class.
 
-1
-2
-3
 class Abc {
 member variables // class body
 methods}
@@ -2840,10 +2837,6 @@ In Java, a local variable is typically used inside a method, constructor, or a b
 
 Example
 
-1
-2
-3
-4
 if(x > 100)
 {
 String test = "Edureka";
@@ -2852,10 +2845,7 @@ String test = "Edureka";
 
 Whereas, an instance variable in Java, is a variable which is bounded to its object itself. These variables are declared within a class, but outside a method. Every object of that class will create it’s own copy of the variable while using it. Thus, any changes made to the variable won’t reflect in any other instances of that class and will be bound to that particular instance only.
 
-1
-2
-3
-4
+
 class Test{
 public String EmpName;
 public int empAge;
@@ -2886,14 +2876,7 @@ break	continue
 2. It causes the switch or loop statements to terminate the moment it is executed	2. It doesn’t terminate the loop but causes the loop to jump to the next iteration
 3. It terminates the innermost enclosing loop or switch immediately	3. A continue within a loop nested with a switch will cause the next loop iteration to execute
 Example break:
-1
-2
-3
-4
-5
-6
-7
-8
+
 for (int i = 0; i < 5; i++)
 {
 if (i == 3)
@@ -2903,14 +2886,7 @@ break;
 System.out.println(i);
 }
 Example continue:
-1
-2
-3
-4
-5
-6
-7
-8
+
 for (int i = 0; i < 5; i++)
 {
 if(i == 2)
@@ -2924,15 +2900,6 @@ An infinite loop is an instruction sequence in Java that loops endlessly when a 
 
 For example:
 
-
-1
-2
-3
-4
-5
-6
-7
-8
 public class InfiniteForLoopDemo
 {
 public static void main(String[] arg) {
@@ -2982,6 +2949,179 @@ Extension ClassLoader
 System/Application ClassLoader
 Q30. Why Java Strings are immutable in nature?
 In Java, string objects are immutable in nature which simply means once the String object is created its state cannot be modified. Whenever you try to update the value of that object instead of updating the values of that particular object, Java creates a new string object. Java String objects are immutable as String objects are generally cached in the String pool. Since String literals are usually shared between multiple clients, action from one client might affect the rest. It enhances security, caching, synchronization, and performance of the application. 
+Q31. What is the difference between an array and an array list?
+Array	ArrayList
+Cannot contain values of different data types	Can contain values of different data types.
+Size must be defined at the time of declaration	Size can be dynamically changed
+Need to specify the index in order to add data	No need to specify the index
+Arrays are not type parameterized	Arraylists are type 
+Arrays can contain primitive data types as well as objects	Arraylists can contain only objects, no primitive data types are allowed
+Q32. What is a Map in Java?
+In Java, Map is an interface of Util package which maps unique keys to values. The Map interface is not a subset of the main Collection interface and thus it behaves little different from the other collection types. Below are a few of the characteristics of Map interface: 
+
+Map doesn’t contain duplicate keys.
+Each key can map at max one value.
+
+Q33. What is collection class in Java? List down its methods and interfaces.
+In Java, the collection is a framework that acts as an architecture for storing and manipulating a group of objects. Using Collections you can perform various tasks like searching, sorting, insertion, manipulation, deletion, etc. Java collection framework includes the following:
+
+Interfaces
+Classes
+Methods
+The below image shows the complete hierarchy of the Java Collection.
+
+FrameworkHierarchy - Java Collections -
+
+ 
+
+In case you are facing any challenges with these java interview questions, please comment on your problems in the section below.
+
+OOPS Java Interview Questions
+Q1. What is Polymorphism?
+Polymorphism is briefly described as “one interface, many implementations”. Polymorphism is a characteristic of being able to assign a different meaning or usage to something in different contexts – specifically, to allow an entity such as a variable, a function, or an object to have more than one form. There are two types of polymorphism:
+
+Compile time polymorphism
+Run time polymorphism
+Compile time polymorphism is method overloading whereas Runtime time polymorphism is done using inheritance and interface.
+
+Q2. What is runtime polymorphism or dynamic method dispatch?
+In Java, runtime polymorphism or dynamic method dispatch is a process in which a call to an overridden method is resolved at runtime rather than at compile-time. In this process, an overridden method is called through the reference variable of a superclass. Let’s take a look at the example below to understand it better.
+
+class Car {
+void run()
+{
+System.out.println(“car is running”); 
+}
+}
+class Audi extends Car {
+void run()
+{
+System.out.prinltn(“Audi is running safely with 100km”);
+}
+public static void main(String args[])
+{
+Car b= new Audi();    //upcasting
+b.run();
+}
+}
+Q3. What is abstraction in Java?
+Abstraction refers to the quality of dealing with ideas rather than events. It basically deals with hiding the details and showing the essential things to the user. Thus you can say that abstraction in Java is the process of hiding the implementation details from the user and revealing only the functionality to them. Abstraction can be achieved in two ways:
+
+Abstract Classes (0-100% of abstraction can be achieved)
+Interfaces (100% of abstraction can be achieved)
+Q4. What do you mean by an interface in Java?
+An interface in Java is a blueprint of a class or you can say it is a collection of abstract methods and static constants. In an interface, each method is public and abstract but it does not contain any constructor. Thus, interface basically is a group of related methods with empty bodies. Example:
+
+public interface Animal {
+  public void eat();
+  public void sleep();
+  public void run();
+}
+Q5. What is the difference between abstract classes and interfaces?
+Abstract Class	Interfaces
+An abstract class can provide complete, default code and/or just the details that have to be overridden	An interface cannot provide any code at all, just the signature
+In the case of an abstract class, a class may extend only one abstract class	A Class may implement several interfaces
+An abstract class can have non-abstract methods	All methods of an Interface are abstract
+An abstract class can have instance variables	An Interface cannot have instance variables
+An abstract class can have any visibility: public, private, protected	An Interface visibility must be public (or) none
+If we add a new method to an abstract class then we have the option of providing default implementation and therefore all the existing code might work properly	If we add a new method to an Interface then we have to track down all the implementations of the interface and define implementation for the new method
+An abstract class can contain constructors	An Interface cannot contain constructors
+Abstract classes are fast	Interfaces are slow as it requires extra indirection to find the corresponding method in the actual class
+Q6. What is inheritance in Java?
+
+Inheritance in Java is the concept where the properties of one class can be inherited by the other. It helps to reuse the code and establish a relationship between different classes. Inheritance is performed between two types of classes:
+
+Parent class (Super or Base class)
+Child class (Subclass or Derived class)
+
+A class which inherits the properties is known as Child Class whereas a class whose properties are inherited is known as Parent class.
+
+Q7. What are the different types of inheritance in Java?
+Java supports four types of inheritance which are:
+
+Single Inheritance: In single inheritance, one class inherits the properties of another i.e there will be only one parent as well as one child class.
+Multilevel Inheritance: When a class is derived from a class which is also derived from another class, i.e. a class having more than one parent class but at different levels, such type of inheritance is called Multilevel Inheritance.
+Hierarchical Inheritance: When a class has more than one child classes (subclasses) or in other words, more than one child classes have the same parent class, then such kind of inheritance is known as hierarchical.
+Hybrid Inheritance: Hybrid inheritance is a combination of two or more types of inheritance.
+Q8. What is method overloading and method overriding?
+Method Overloading :
+In Method Overloading, Methods of the same class shares the same name but each method must have a different number of parameters or parameters having different types and order.
+Method Overloading is to “add” or “extend” more to the method’s behavior.
+It is a compile-time polymorphism.
+The methods must have a different signature.
+It may or may not need inheritance in Method Overloading.
+Let’s take a look at the example below to understand it better.
+
+class Adder {
+Static int add(int a, int b)
+{
+return a+b;
+}
+Static double add( double a, double b)
+{
+return a+b;
+}
+public static void main(String args[])
+{
+System.out.println(Adder.add(11,11));
+System.out.println(Adder.add(12.3,12.6));
+}}
+Method Overriding:  
+In Method Overriding, the subclass has the same method with the same name and exactly the same number and type of parameters and same return type as a superclass.
+Method Overriding is to “Change” existing behavior of the method.
+It is a run time polymorphism.
+The methods must have the same signature.
+It always requires inheritance in Method Overriding.
+Let’s take a look at the example below to understand it better.
+
+class Car {
+void run(){
+System.out.println(“car is running”); 
+}
+Class Audi extends Car{
+void run()
+{
+System.out.prinltn("Audi is running safely with 100km");
+}
+public static void main( String args[])
+{
+Car b=new Audi();
+b.run();
+}
+}
+Q9. Can you override a private or static method in Java?
+You cannot override a private or static method in Java. If you create a similar method with the same return type and same method arguments in child class then it will hide the superclass method; this is known as method hiding. Similarly, you cannot override a private method in subclass because it’s not accessible there. What you can do is create another private method with the same name in the child class. Let’s take a look at the example below to understand it better.
+
+class Base {
+private static void display() {
+System.out.println("Static or class method from Base");
+}
+public void print() {
+System.out.println("Non-static or instance method from Base");
+}
+class Derived extends Base {
+private static void display() {
+System.out.println("Static or class method from Derived");
+}
+public void print() {
+System.out.println("Non-static or instance method from Derived");
+}
+public class test {
+public static void main(String args[])
+{
+Base obj= new Derived();
+obj1.display();
+obj1.print();
+}
+}
+Q10. What is multiple inheritance? Is it supported by Java?
+MultipleInheritance - Java Interview Questions - EdurekaIf a child class inherits the property from multiple classes is known as multiple inheritance. Java does not allow to extend multiple classes.
+
+The problem with multiple inheritance is that if multiple parent classes have the same method name, then at runtime it becomes difficult for the compiler to decide which method to execute from the child class.
+
+Therefore, Java doesn’t support multiple inheritance. The problem is commonly referred to as Diamond Problem.
+
+
 
 ## Footnotes
 

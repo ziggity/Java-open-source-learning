@@ -2972,8 +2972,6 @@ The below image shows the complete hierarchy of the Java Collection.
 
 FrameworkHierarchy - Java Collections -
 
- 
-
 In case you are facing any challenges with these java interview questions, please comment on your problems in the section below.
 
 OOPS Java Interview Questions
@@ -3121,7 +3119,49 @@ The problem with multiple inheritance is that if multiple parent classes have th
 
 Therefore, Java doesn’t support multiple inheritance. The problem is commonly referred to as Diamond Problem.
 
+Q11. What is encapsulation in Java?
+Encapsulation is a mechanism where you bind your data(variables) and code(methods) together as a single unit. Here, the data is hidden from the outer world and can be accessed only via current class methods. This helps in protecting the data from any unnecessary modification. We can achieve encapsulation in Java by:
 
+Declaring the variables of a class as private.
+Providing public setter and getter methods to modify and view the values of the variables.
+Q12. What is an association?
+Association is a relationship where all object have their own lifecycle and there is no owner. Let’s take the example of Teacher and Student. Multiple students can associate with a single teacher and a single student can associate with multiple teachers but there is no ownership between the objects and both have their own lifecycle. These relationships can be one to one, one to many, many to one and many to many.
+
+Q13. What do you mean by aggregation?
+An aggregation is a specialized form of Association where all object has their own lifecycle but there is ownership and child object can not belong to another parent object. Let’s take an example of Department and teacher. A single teacher can not belong to multiple departments, but if we delete the department teacher object will not destroy. 
+
+Q14. What is composition in Java?
+Composition is again a specialized form of Aggregation and we can call this as a “death” relationship. It is a strong type of Aggregation. Child object does not have their lifecycle and if parent object deletes all child object will also be deleted. Let’s take again an example of a relationship between House and rooms. House can contain multiple rooms there is no independent life of room and any room can not belongs to two different houses if we delete the house room will automatically delete.
+
+Q15. What is a marker interface?
+
+A Marker interface can be defined as the interface having no data member and member functions. In simpler terms, an empty interface is called the Marker interface. The most common examples of Marker interface in Java are Serializable, Cloneable etc. The marker interface can be declared as follows.
+
+public interface Serializable{
+}
+Q16. What is object cloning in Java?
+
+Object cloning in Java is the process of creating an exact copy of an object. It basically means the ability to create an object with a similar state as the original object. To achieve this, Java provides a method clone() to make use of this functionality. This method creates a new instance of the class of the current object and then initializes all its fields with the exact same contents of corresponding fields. To object clone(), the marker interface java.lang.Cloneable must be implemented to avoid any runtime exceptions. One thing you must note is Object clone() is a protected method, thus you need to override it.
+
+Q17. What is a copy constructor in Java?
+Copy constructor is a member function that is used to initialize an object using another object of the same class. Though there is no need for copy constructor in Java since all objects are passed by reference. Moreover, Java does not even support automatic pass-by-value.
+
+Q18. What is a constructor overloading in Java?
+In Java, constructor overloading is a technique of adding any number of constructors to a class each having a different parameter list. The compiler uses the number of parameters and their types in the list to differentiate the overloaded constructors.
+
+class Demo
+{
+int i;
+public Demo(int a)
+{
+i=k;
+}
+public Demo(int a, int b)
+{
+//body
+}
+}
+In case you are facing any challenges with these java interview questions, please comment on your problems in the section below. Apart from this Java Interview Questions Blog, if you want to get trained from professionals on this technology, you can opt for a structured training from edureka!
 
 ## Footnotes
 

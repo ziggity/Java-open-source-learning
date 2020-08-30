@@ -3162,7 +3162,133 @@ public Demo(int a, int b)
 }
 }
 In case you are facing any challenges with these java interview questions, please comment on your problems in the section below. Apart from this Java Interview Questions Blog, if you want to get trained from professionals on this technology, you can opt for a structured training from edureka!
+Servlets Interview Questions  
+Q1. What is a servlet?
+Java Servlet is server-side technologies to extend the capability of web servers by providing support for dynamic response and data persistence.
+The javax.servlet and javax.servlet.http packages provide interfaces and classes for writing our own servlets.
+All servlets must implement the javax.servlet.Servlet interface, which defines servlet lifecycle methods. When implementing a generic service, we can extend the GenericServlet class provided with the Java Servlet API. The HttpServlet class provides methods, such as doGet() and doPost(), for handling HTTP-specific services.
+Most of the times, web applications are accessed using HTTP protocol and thats why we mostly extend HttpServlet class. Servlet API hierarchy is shown in below image.
+Servlet - Java Interview Questions - Edureka
 
+Q2. What are the differences between Get and Post methods?
+Get	Post
+Limited amount of data can be sent because data is sent in header.	Large amount of data can be sent because data is sent in body.
+ Not Secured because data is exposed in URL bar.	 Secured because data is not exposed in URL bar.
+ Can be bookmarked	 Cannot be bookmarked
+ Idempotent	 Non-Idempotent
+ It is more efficient and used than Post	 It is less efficient and used
+Q3. What is Request Dispatcher?
+RequestDispatcher interface is used to forward the request to another resource that can be HTML, JSP or another servlet in same application. We can also use this to include the content of another resource to the response.
+
+There are two methods defined in this interface:
+
+1.void forward()
+
+2.void include()
+
+ForwardMethod - Java Interview Questions - Edureka
+IncludeMethod - Java Interview Questions - Edureka
+Q4. What are the differences between forward() method and sendRedirect() methods?
+
+forward() method	SendRedirect() method
+forward() sends the same request to another resource.	sendRedirect() method sends new request always because it uses the URL bar of the browser.
+ forward() method works at server side.	 sendRedirect() method works at client side.
+ forward() method works within the server only.	sendRedirect() method works within and outside the server.
+Q5. What is the life-cycle of a servlet?
+There are 5 stages in the lifecycle of a servlet:LifeCycleServlet - Java Interview Questions - Edureka
+
+Servlet is loaded
+Servlet is instantiated
+Servlet is initialized
+Service the request
+Servlet is destroyed
+Q6. How does cookies work in Servlets?
+Cookies are text data sent by server to the client and it gets saved at the client local machine.
+Servlet API provides cookies support through javax.servlet.http.Cookie class that implements Serializable and Cloneable interfaces.
+HttpServletRequest getCookies() method is provided to get the array of Cookies from request, since there is no point of adding Cookie to request, there are no methods to set or add cookie to request.
+Similarly HttpServletResponse addCookie(Cookie c) method is provided to attach cookie in response header, there are no getter methods for cookie.
+Q7. What are the differences between ServletContext vs ServletConfig?
+The difference between ServletContext and ServletConfig in Servlets JSP is in below tabular format.
+
+ServletConfig	ServletContext
+Servlet config object represent single servlet	It represent whole web application running on particular JVM and common for all the servlet
+Its like local parameter associated with particular servlet	Its like global parameter associated with whole application
+It’s a name value pair defined inside the servlet section of web.xml file so it has servlet wide scope	ServletContext has application wide scope so define outside of servlet tag in web.xml file.
+getServletConfig() method is used to get the config object	getServletContext() method is  used to get the context object.
+for example shopping cart of a user is a specific to particular user so here we can use servlet config	To get the MIME type of a file or application session related information is stored using servlet context object.
+
+Q8. What are the different methods of session management in servlets?
+Session is a conversational state between client and server and it can consists of multiple request and response between client and server. Since HTTP and Web Server both are stateless, the only way to maintain a session is when some unique information about the session (session id) is passed between server and client in every request and response.
+
+Some of the common ways of session management in servlets are:
+
+User Authentication
+HTML Hidden Field
+Cookies
+URL Rewriting
+Session Management API
+
+SessionManagement - Java Interview Questions - Edureka
+In case you are facing any challenges with these java interview questions, please comment your problems in the section below. Apart from this Java Interview Questions Blog, if you want to get trained from professionals on this technology, you can opt for a structured training from edureka! Click below to know more.
+
+JDBC Interview Questions 
+1. What is JDBC Driver?
+JDBC Driver is a software component that enables java application to interact with the database. There are 4 types of JDBC drivers:
+
+JDBC-ODBC bridge driver
+Native-API driver (partially java driver)
+Network Protocol driver (fully java driver)
+Thin driver (fully java driver)
+2. What are the steps to connect to a database in java?
+Registering the driver class
+Creating connection
+Creating statement
+Executing queries
+Closing connection
+3. What are the JDBC API components?
+The java.sql package contains interfaces and classes for JDBC API.
+
+Interfaces:
+Connection
+Statement
+PreparedStatement
+ResultSet
+ResultSetMetaData
+DatabaseMetaData
+CallableStatement etc.
+Classes:
+DriverManager
+Blob
+Clob
+Types
+SQLException etc.
+4. What is the role of JDBC DriverManager class?
+The DriverManager class manages the registered drivers. It can be used to register and unregister drivers. It provides factory method that returns the instance of Connection.
+
+5. What is JDBC Connection interface?
+The Connection interface maintains a session with the database. It can be used for transaction management. It provides factory methods that returns the instance of Statement, PreparedStatement, CallableStatement and DatabaseMetaData.
+
+ConnectionInterface - Java Interview Questions - Edureka
+6.  What is the purpose of JDBC ResultSet interface?
+The ResultSet object represents a row of a table. It can be used to change the cursor pointer and get the information from the database.
+
+7. What is JDBC ResultSetMetaData interface?
+The ResultSetMetaData interface returns the information of table such as total number of columns, column name, column type etc.
+
+8. What is JDBC DatabaseMetaData interface?
+The DatabaseMetaData interface returns the information of the database such as username, driver name, driver version, number of tables, number of views etc.
+
+9. What do you mean by batch processing in JDBC?
+Batch processing helps you to group related SQL statements into a batch and execute them instead of executing a single query. By using batch processing technique in JDBC, you can execute multiple queries which makes the performance faster.
+
+10. What is the difference between execute, executeQuery, executeUpdate?
+Statement execute(String query) is used to execute any SQL query and it returns TRUE if the result is an ResultSet such as running Select queries. The output is FALSE when there is no ResultSet object such as running Insert or Update queries. We can use getResultSet() to get the ResultSet and getUpdateCount() method to retrieve the update count.
+
+Statement executeQuery(String query) is used to execute Select queries and returns the ResultSet. ResultSet returned is never null even if there are no records matching the query. When executing select queries we should use executeQuery method so that if someone tries to execute insert/update statement it will throw java.sql.SQLException with message “executeQuery method can not be used for update”.
+
+Statement executeUpdate(String query) is used to execute Insert/Update/Delete (DML) statements or DDL statements that returns nothing. The output is int and equals to the row count for SQL Data Manipulation Language (DML) statements. For DDL statements, the output is 0.
+
+You should use execute() method only when you are not sure about the type of statement else use executeQuery or executeUpdate method.
 ## Footnotes
 
 1. <a name="footnote-1"></a>Thanks,

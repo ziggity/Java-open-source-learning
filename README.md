@@ -3529,6 +3529,113 @@ JSP is a technology on the server’s side to make content generation simple. Th
 10. Why should we not configure JSP standard tags in web.xml?
 
 We don’t need to configure JSP standard tags in web.xml because when container loads the web application and find TLD files, it automatically configures them to be used directly in the application JSP pages. We just need to include it in the JSP page using taglib directive.
+
+11. How will you use JSP EL in order to get the HTTP method name?
+Using pageContext JSP EL implicit object you can get the request object reference and make use of the dot operator to retrieve the HTTP method name in the JSP page. The JSP EL code for this purpose will look like ${pageContext.request.method}.
+
+In case you are facing any challenges with these java interview questions, please comment on your problems in the section below. Apart from this Java Interview Questions Blog, if you want to get trained from professionals on this technology, you can opt for structured training from edureka!
+
+Exception and Thread Java Interview Questions
+Q1. What is the difference between Error and Exception?
+An error is an irrecoverable condition occurring at runtime. Such as OutOfMemory error. These JVM errors you cannot repair them at runtime. Though error can be caught in the catch block but the execution of application will come to a halt and is not recoverable.
+
+While exceptions are conditions that occur because of bad input or human error etc. e.g. FileNotFoundException will be thrown if the specified file does not exist. Or a NullPointerException will take place if you try using a null reference. In most of the cases it is possible to recover from an exception (probably by giving the user feedback for entering proper values etc.
+
+Q2. How can you handle Java exceptions?
+There are five keywords used to handle exceptions in Java: 
+
+try
+catch
+finally
+throw
+throws
+Q3. What are the differences between Checked Exception and Unchecked Exception?
+Checked Exception
+The classes that extend Throwable class except RuntimeException and Error are known as checked exceptions. 
+Checked exceptions are checked at compile-time.
+Example: IOException, SQLException etc.
+Unchecked Exception
+The classes that extend RuntimeException are known as unchecked exceptions. 
+Unchecked exceptions are not checked at compile-time.
+Example: ArithmeticException, NullPointerException etc.
+Q4. What purpose do the keywords final, finally, and finalize fulfill? 
+Final:
+Final is used to apply restrictions on class, method, and variable. A final class can’t be inherited, final method can’t be overridden and final variable value can’t be changed. Let’s take a look at the example below to understand it better.
+
+class FinalVarExample {
+public static void main( String args[])
+{
+final int a=10;   // Final variable
+a=50;             //Error as value can't be changed
+}
+Finally
+Finally is used to place important code, it will be executed whether the exception is handled or not. Let’s take a look at the example below to understand it better.
+
+class FinallyExample {
+public static void main(String args[]){
+try {
+int x=100;
+}
+catch(Exception e) {
+System.out.println(e);
+}
+finally {
+System.out.println("finally block is executing");}
+}}
+}
+Finalize
+Finalize is used to perform clean up processing just before the object is garbage collected. Let’s take a look at the example below to understand it better.
+
+class FinalizeExample {
+public void finalize() {
+System.out.println("Finalize is called");
+}
+public static void main(String args[])
+{
+FinalizeExample f1=new FinalizeExample();
+FinalizeExample f2=new FinalizeExample();
+f1= NULL;
+f2=NULL;
+System.gc();
+}
+}
+ Q5. What are the differences between throw and throws? 
+throw keyword	throws keyword
+Throw is used to explicitly throw an exception.	Throws is used to declare an exception.
+Checked exceptions can not be propagated with throw only.	Checked exception can be propagated with throws.
+Throw is followed by an instance.	Throws is followed by class.
+Throw is used within the method.	Throws is used with the method signature.
+You cannot throw multiple exception	You can declare multiple exception e.g. public void method()throws IOException,SQLException.
+Q6. What is exception hierarchy in java?
+The hierarchy is as follows:
+
+Throwable is a parent class of all Exception classes. There are two types of Exceptions: Checked exceptions and UncheckedExceptions or RunTimeExceptions. Both type of exceptions extends Exception class whereas errors are further classified into Virtual Machine error and Assertion error.
+
+ExceptionHierarchy - Java Interview Questions - Edureka
+
+Q7. How to create a custom Exception?
+To create you own exception extend the Exception class or any of its subclasses.
+
+class New1Exception extends Exception { }               // this will create Checked Exception
+class NewException extends IOException { }             // this will create Checked exception
+class NewException extends NullPonterExcpetion { }  // this will create UnChecked exception
+Q8. What are the important methods of Java Exception Class?
+Exception and all of it’s subclasses doesn’t provide any specific methods and all of the methods are defined in the base class Throwable.
+
+String getMessage() – This method returns the message String of Throwable and the message can be provided while creating the exception through it’s constructor.
+String getLocalizedMessage() – This method is provided so that subclasses can override it to provide locale specific message to the calling program. Throwable class implementation of this method simply use getMessage() method to return the exception message.
+Synchronized Throwable getCause() – This method returns the cause of the exception or null id the cause is unknown.
+String toString() – This method returns the information about Throwable in String format, the returned String contains the name of Throwable class and localized message.
+void printStackTrace() – This method prints the stack trace information to the standard error stream, this method is overloaded and we can pass PrintStream or PrintWriter as an argument to write the stack trace information to the file or stream.
+Q9. What are the differences between processes and threads?
+ 	Process	Thread
+Definition	An executing instance of a program is called a process.	A thread is a subset of the process.
+Communication	Processes must use inter-process communication to communicate with sibling processes.	Threads can directly communicate with other threads of its process.
+Control	Processes can only exercise control over child processes.	Threads can exercise considerable control over threads of the same process.
+Changes	Any change in the parent process does not affect child processes.	Any change in the main thread may affect the behavior of the other threads of the process.
+Memory	Run in separate memory spaces.	Run in shared memory spaces.
+Controlled by	Process is controlled by the operating system.	Threads are controlled by programmer in a program.
+Dependence	Processes are independent.	Threads are dependent.
 ## Footnotes
 
 1. <a name="footnote-1"></a>Thanks,

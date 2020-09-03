@@ -3394,6 +3394,141 @@ Some of the Spring annotations that I have used in my project are:
 @Configuration, @ComponentScan and @Bean – for java based configurations.
 
 AspectJ annotations for configuring aspects and advices , @Aspect, @Before, @After, @Around, @Pointcut, etc.
+
+Q10. How to integrate Spring and Hibernate Frameworks?
+We can use Spring ORM module to integrate Spring and Hibernate frameworks if you are using Hibernate 3+ where SessionFactory provides current session, then you should avoid using HibernateTemplate or HibernateDaoSupport classes and better to use DAO pattern with dependency injection for the integration.
+
+Also, Spring ORM provides support for using Spring declarative transaction management, so you should utilize that rather than going for hibernate boiler-plate code for transaction management. 
+
+Q11. Name the types of transaction management that Spring supports.
+Two types of transaction management are supported by Spring. They are:
+
+Programmatic transaction management: In this, the transaction is managed with the help of programming. It provides you extreme flexibility, but it is very difficult to maintain.
+Declarative transaction management: In this, transaction management is separated from the business code. Only annotations or XML based configurations are used to manage the transactions.
+In case you are facing any challenges with these java interview questions, please comment your problems in the section below. Apart from this Java Interview Questions Blog, if you want to get trained from professionals on this technology, you can opt for structured training from edureka!
+
+Hibernate Interview Questions
+1. What is Hibernate Framework?
+Object-relational mapping or ORM is the programming technique to map application domain model objects to the relational database tables. Hibernate is Java-based ORM tool that provides a framework for mapping application domain objects to the relational database tables and vice versa.
+
+Hibernate provides a reference implementation of Java Persistence API, that makes it a great choice as ORM tool with benefits of loose coupling. We can use the Hibernate persistence API for CRUD operations. Hibernate framework provide option to map plain old java objects to traditional database tables with the use of JPA annotations as well as XML based configuration.
+
+Similarly, hibernate configurations are flexible and can be done from XML configuration file as well as programmatically.
+
+2. What are the important benefits of using Hibernate Framework?
+Some of the important benefits of using hibernate framework are:
+
+Hibernate eliminates all the boiler-plate code that comes with JDBC and takes care of managing resources, so we can focus on business logic.
+Hibernate framework provides support for XML as well as JPA annotations, that makes our code implementation independent.
+Hibernate provides a powerful query language (HQL) that is similar to SQL. However, HQL is fully object-oriented and understands concepts like inheritance, polymorphism, and association.
+Hibernate is an open source project from Red Hat Community and used worldwide. This makes it a better choice than others because learning curve is small and there are tons of online documentation and help is easily available in forums.
+Hibernate is easy to integrate with other Java EE frameworks, it’s so popular that Spring Framework provides built-in support for integrating hibernate with Spring applications.
+Hibernate supports lazy initialization using proxy objects and perform actual database queries only when it’s required.
+Hibernate cache helps us in getting better performance.
+For database vendor specific feature, hibernate is suitable because we can also execute native sql queries.
+Overall hibernate is the best choice in current market for ORM tool, it contains all the features that you will ever need in an ORM tool.
+
+3. Explain Hibernate architecture.
+HibernateArchitecture - Java Interview Questions - Edureka
+
+4. What are the differences between get and load methods?
+The differences between get() and load() methods are given below.
+
+No.	get()	load()
+ 1)	 Returns null if object is not found.	Throws ObjectNotFoundException if an object is not found.
+ 2)	 get() method always hit the database.	 load() method doesn’t hit the database.
+ 3)	 It returns a real object, not a proxy.	 It returns a proxy object.
+ 4)	It should be used if you are not sure about the existence of instance.	It should be used if you are sure that the instance exists.
+5. What are the advantages of Hibernate over JDBC?
+Some of the important advantages of Hibernate framework over JDBC are:
+
+Hibernate removes a lot of boiler-plate code that comes with JDBC API, the code looks cleaner and readable.
+Hibernate supports inheritance, associations, and collections. These features are not present with JDBC API.
+Hibernate implicitly provides transaction management, in fact, most of the queries can’t be executed outside transaction. In JDBC API, we need to write code for transaction management using commit and rollback. 
+JDBC API throws SQLException that is a checked exception, so we need to write a lot of try-catch block code. Most of the times it’s redundant in every JDBC call and used for transaction management. Hibernate wraps JDBC exceptions and throw JDBCException or HibernateException un-checked exception, so we don’t need to write code to handle it. Hibernate built-in transaction management removes the usage of try-catch blocks.
+Hibernate Query Language (HQL) is more object-oriented and close to Java programming language. For JDBC, we need to write native SQL queries.
+Hibernate supports caching that is better for performance, JDBC queries are not cached hence performance is low.
+Hibernate provides option through which we can create database tables too, for JDBC tables must exist in the database.
+Hibernate configuration helps us in using JDBC like connection as well as JNDI DataSource for the connection pool. This is a very important feature in enterprise application and completely missing in JDBC API.
+Hibernate supports JPA annotations, so the code is independent of the implementation and easily replaceable with other ORM tools. JDBC code is very tightly coupled with the application.
+
+In case you are facing any challenges with these Java interview questions, please comment on your problems in the section below. Apart from this Java Interview Questions Blog, if you want to get trained from professionals on this technology, you can opt for structured training from edureka!
+
+Java Interview Questions: JSP
+1. What are the life-cycle methods for a jsp?
+Methods	Description
+ public void jspInit()	It is invoked only once, same as init method of servlet.
+public void _jspService(ServletRequest request,ServletResponse)throws ServletException,IOException	It is invoked at each request, same as service() method of servlet.
+ public void jspDestroy()	It is invoked only once, same as destroy() method of servlet.
+2. What are the JSP implicit objects?
+JSP provides 9 implicit objects by default. They are as follows:
+
+Object	Type
+1) out	 JspWriter
+2) request	 HttpServletRequest
+3) response	 HttpServletResponse
+4) config	 ServletConfig
+5) session	 HttpSession
+6) application	 ServletContext
+7) pageContext	 PageContext
+8) page	 Object
+9) exception	 Throwable
+3. What are the differences between include directive and include action?
+include directive	include action
+The include directive includes the content at page translation time.	The include action includes the content at request time.
+The include directive includes the original content of the page so page size increases at runtime.	The include action doesn’t include the original content rather invokes the include() method of Vendor provided class.
+ It’s better for static pages.	 It’s better for dynamic pages.
+4. How to disable caching on back button of the browser?
+<%
+response.setHeader(“Cache-Control”,”no-store”);
+response.setHeader(“Pragma”,”no-cache”);
+response.setHeader (“Expires”, “0”);                    //prevents caching at the proxy server
+%>   
+
+5. What are the different tags provided in JSTL?
+There are 5 type of JSTL tags.
+
+core tags
+sql tags
+xml tags
+internationalization tags
+functions tags
+6. How to disable session in JSP?
+<%@ page session=“false” %>   
+7.  How to delete a Cookie in a JSP?
+The following code explains how to delete a Cookie in a JSP :
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+Cookie mycook = new Cookie("name1","value1");
+ 
+response.addCookie(mycook1);
+ 
+Cookie killmycook = new Cookie("mycook1","value1");
+ 
+killmycook . set MaxAge ( 0 );
+ 
+killmycook . set Path ("/");
+ 
+killmycook . addCookie ( killmycook 1 );
+8. Explain the jspDestroy() method.
+jspDestry() method is invoked from javax.servlet.jsp.JspPage interface whenever a JSP page is about to be destroyed. Servlets destroy methods can be easily overridden to perform cleanup, like when closing a database connection.
+
+9.  How is JSP better than Servlet technology?
+JSP is a technology on the server’s side to make content generation simple. They are document-centric, whereas servlets are programs. A Java server page can contain fragments of Java program, which execute and instantiate Java classes. However, they occur inside an HTML template file. It provides the framework for the development of a Web Application.
+
+10. Why should we not configure JSP standard tags in web.xml?
+
+We don’t need to configure JSP standard tags in web.xml because when container loads the web application and find TLD files, it automatically configures them to be used directly in the application JSP pages. We just need to include it in the JSP page using taglib directive.
 ## Footnotes
 
 1. <a name="footnote-1"></a>Thanks,
